@@ -7,7 +7,7 @@ namespace FileScannerApp
         static void Main(string[] args)
         {
             string filePath = string.Empty;
-           // Console.WriteLine("Please provide file path");
+           
             try
             {
                 filePath = @"D:\Development\TransPerfect\FileScannerApp\download.png";
