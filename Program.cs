@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.IO;
 
 namespace FileScannerApp
 {
@@ -6,20 +7,29 @@ namespace FileScannerApp
     {
         static void Main(string[] args)
         {
-            string filePath = string.Empty;
-           
-            try
-            {
-                filePath = @"D:\Development\TransPerfect\FileScannerApp\download.png";
-                string fileName = "download.png";
-                var re = FileUploaderHelper.UploadFileAndScanQRCode(filePath, fileName);
-                Console.WriteLine(re);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+            Console.WriteLine("Enter the file path");
+            var dirPath = @"" + Console.ReadLine();
 
+            if (File.Exists(dirPath))
+            {
+                string filePath = new DirectoryInfo(dirPath).ToString();
+                try
+                {
+                    string fileName = Path.GetFileName(filePath);
+                    var re = FileUploaderHelper.UploadFileAndScanQRCode(filePath, fileName);
+                    Console.WriteLine(re);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
             }
+            else
+            {
+                Console.WriteLine("Invalid File Path");
+            }
+
         }
     }
 }
